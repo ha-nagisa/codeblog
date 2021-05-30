@@ -6,7 +6,7 @@ import { Col } from "react-bootstrap";
 import CardItem from "components/CardItem";
 import CardItemBlank from "components/CardItemBlank";
 import CardListItem from "components/CardListItem";
-import CardListItemBlank from "components/CardListitemBlank";
+import CardListItemBlank from "components/CardListItemBlank";
 import moment from "moment";
 
 export const useGetBlogsPages = ({ blogs, filter }) => {
