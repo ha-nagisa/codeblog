@@ -1,0 +1,28 @@
+{
+  "name": "filip-blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/client": "^2.8.0",
+    "@sanity/image-url": "^0.140.22",
+    "bootstrap": "^4.5.0",
+    "highlight.js": "^10.7.2",
+    "moment": "^2.29.1",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
+    "react-toggle": "^4.1.2",
+    "sass": "^1.32.12",
+    "swr": "^0.2.2"
+  }
+}
