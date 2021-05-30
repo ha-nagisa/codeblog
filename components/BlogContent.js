@@ -15,7 +15,7 @@ const serializers = {
     image: ({ node: { asset, alt, position = "center" } }) => {
       return (
         <div className={`blog-image blog-image-${position}`}>
-          <img src={urlFor(asset.url).height(300).fit("max")} />
+          <img src={urlFor(asset.url).height(600).fit("max")} />
           <div className="image-alt">{alt}</div>
         </div>
       );
