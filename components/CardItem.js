@@ -32,7 +32,7 @@ const CardItem = ({ title, subtitle, image, date, author, link, mode = "normal" 
           {mode === "placeholder" ? (
             <div className="image-placeholder" />
           ) : (
-            image.asset && (
+            image?.asset && (
               <Card.Img src={urlFor(image).height(300).crop("center").fit("clip").url()} alt="Card image cap" />
             )
           )}
@@ -45,8 +45,10 @@ const CardItem = ({ title, subtitle, image, date, author, link, mode = "normal" 
             </>
           ) : (
             <>
-              <Card.Title className="card-main-title">{title}</Card.Title>
-              <Card.Text>{subtitle}</Card.Text>
+              <Card.Title className="card-main-title">
+                {title.length > 40 ? title.substr(0, 40) + "..." : title}
+              </Card.Title>
+              <Card.Text>{subtitle.length > 40 ? subtitle.substr(0, 40) + "..." : subtitle}</Card.Text>
             </>
           )}
         </Card.Body>
