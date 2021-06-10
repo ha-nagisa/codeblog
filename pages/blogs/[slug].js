@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import PageLayout from "components/PageLayout";
 import BlogHeader from "components/BlogHeader";
-import ErrorPage from "next/error";
-import { getBlogBySlug, getAllBlogs } from "lib/api";
+// import ErrorPage from "next/error";
+import { getBlogBySlug, getAllBlogs, onBlogUpdate } from "lib/api";
 import { Row, Col } from "react-bootstrap";
 import { urlFor } from "lib/api";
 import moment from "moment";
@@ -10,12 +11,24 @@ import { useRouter } from "next/router";
 import BlogContent from "components/BlogContent";
 import PreviewAlert from "components/PreviewAlert";
 
-const BlogDetail = ({ blog, preview }) => {
+const BlogDetail = ({ blog: initialBlog, preview }) => {
   const router = useRouter();
+  const [blog, setBlog] = useState(initialBlog);
 
-  if (!router.isFallback && !blog?.slug) {
-    return <ErrorPage statusCode="404" />;
-  }
+  useEffect(() => {
+    let sub;
+    if (preview) {
+      sub = onBlogUpdate(blog.slug).subscribe((update) => {
+        setBlog(update.result);
+      });
+    }
+
+    return () => sub && sub.unsubscribe();
+  }, []);
+
+  // if (!router.isFallback && !blog?.slug) {
+  //   return <ErrorPage statusCode="404"/>
+  // }
 
   if (router.isFallback) {
     return <PageLayout className="blog-detail-page">Loading...</PageLayout>;
@@ -45,7 +58,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const blog = await getBlogBySlug(params.slug, preview);
   return {
     props: { blog, preview },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 }
 
